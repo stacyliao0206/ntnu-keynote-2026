@@ -1,0 +1,249 @@
+/* ==========================================================================
+   base.css — 數感簡報範本（自適應 adaptive 版）
+   --------------------------------------------------------------------------
+   特性（自適應版）：
+   ‧ 尺寸單位 vw → 自適應 --u（= 1cqw＝舞台寬的 1%）；舞台鎖 16:9 雙向置中，
+     任何螢幕都不裁切、不漂移。
+   ‧ 新配色 #379C39 / #004B24 / #FEF4E8；內嵌 SVG logo（靠 currentColor 染色）。
+   ‧ 內容安全框 .slide-frame；舞台外底色延伸（bleed，純 :has() CSS）。
+   ‧ 內建：規劃模式（P）、總覽模式（O）、列印出 1920×1080 PDF。
+   字級換算：一般 vw 範本的「Nvw」對應這裡的「calc(N*var(--u))」；16:9 螢幕下兩者等值，
+   所以「內容字 ≥ 2vw」鐵則 = 「≥ calc(2*var(--u))」。check_deck.py 兩種都認得。
+   ========================================================================== */
+
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700;900&display=swap');
+
+:root{
+  /* 配色 */
+  --green-primary:#379C39; --green-dark:#004B24; --hi-yellow:#E8FF3A;
+  --paper:#FFFFFF; --paper-warm:#FEF4E8; --ink:#0A0A0A; --mid-gray:#686968; --label-gray:#757070;
+  --letterbox:#EAF3E7;
+  --alert:#BE2026; --alert-soft:#FBEAE9;   /* 語意色：負面/避開/警示，少量用 */
+  --font-family:'Noto Sans TC',sans-serif;
+
+  /* 自適應單位：1cqw = 舞台寬的 1% */
+  --u: 1cqw;
+
+  /* 字級（全部 calc(N*var(--u))，禁用 vw）*/
+  --fs-cover-title:calc(5.2 * var(--u)); --fs-chapter-title:calc(5 * var(--u)); --fs-chapter-num:calc(22 * var(--u));
+  --fs-hero:calc(3.2 * var(--u)); --fs-card-title:calc(2.2 * var(--u)); --fs-kpi:calc(7.5 * var(--u)); --fs-sub:calc(1.45 * var(--u));
+  --fs-body:calc(1.55 * var(--u)); --fs-small:calc(1.15 * var(--u)); --fs-label:calc(1.05 * var(--u));
+  --fs-min:calc(0.9 * var(--u));            /* 絕對底線（僅頁碼/出處/規劃層等微標註可用）*/
+  --fs-content-min:calc(2 * var(--u));      /* 投影片正文最小字級：給觀眾讀的句子一律 ≥ 此 */
+
+  --lh-tight:1.3; --lh-normal:1.7; --lh-loose:1.95;
+  --gap-xs:calc(0.4 * var(--u)); --gap-sm:calc(0.8 * var(--u)); --gap-md:calc(1.5 * var(--u)); --gap-lg:calc(3 * var(--u)); --gap-xl:calc(5 * var(--u));
+  --radius-sm:calc(0.4 * var(--u)); --radius-md:calc(1.2 * var(--u));
+  --shadow-card:0 calc(0.3 * var(--u)) calc(1.5 * var(--u)) rgba(0,0,0,0.04); --shadow-elevated:0 calc(0.5 * var(--u)) calc(2 * var(--u)) rgba(0,0,0,0.08);
+  --slide-padding:calc(5 * var(--u)); --safe-x:calc(7 * var(--u)); --safe-y:calc(6 * var(--u));
+  --edge-x:calc(7 * var(--u)); --edge-bottom:calc(4.4 * var(--u));
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+html,body{width:100%;height:100%;overflow:hidden;font-family:var(--font-family);font-size:16px;color:var(--ink);background:var(--letterbox);-webkit-font-smoothing:antialiased;text-wrap:pretty;}
+
+/* ===== 底色延伸（bleed）：舞台外補底色「跟著當前頁」，純 :has() CSS，不需 JS =====
+   原則：letterbox 對應該頁底色——白頁補白、米白頁補米白、深綠頁補深綠。
+   ⚠ 下面這些 probe-* class 是「參考頁面 class」，做自己的 deck 時換成你各頁的 class。
+   ⚠ 選擇器限定 .deck 內的 active 頁 —— 總覽模式(O)的縮圖是 .deck 外的複製品，
+     若不限定會誤判「有 active 章節頁」而把底色卡住（曾經的 bug）。 */
+body{background:#FFFFFF;transition:background .4s ease;}                            /* 白底內容頁 → 補白 */
+body:has(.deck .slide.active.probe-thanks){background:var(--paper-warm);}           /* 收尾米白 → 補米白 */
+body:has(.deck .slide.active.probe-flow-page){background:var(--paper-warm);}        /* 流程頁米白 → 補米白 */
+body:has(.deck .slide.active.probe-stats),
+body:has(.deck .slide.active.probe-breather){background:var(--green-dark);}         /* 深綠呼吸頁 → 補深綠 */
+/* 章節分隔：左綠右米白，接縫沿舞台 38% 自動對齊（D = 舞台寬，seam = 50vw - 0.12D）*/
+body:has(.deck .slide.active.probe-chapter){
+  background:linear-gradient(90deg,
+    var(--green-primary) calc(50vw - 0.12 * min(100vw, 177.7778vh)),
+    var(--paper-warm)    calc(50vw - 0.12 * min(100vw, 177.7778vh)));
+}
+body:has(.deck .slide.active.probe-photo){background:var(--ink);}                    /* 滿版圖封面 → 補深色 */
+
+/* ===== 鎖定 16:9 舞台：永遠等比、置中 ===== */
+.deck{position:fixed;inset:0;margin:auto;width:min(100vw,177.7778vh);aspect-ratio:16/9;container-type:inline-size;background:var(--paper);overflow:hidden;}
+.slide{position:absolute;inset:0;width:100%;height:100%;container-type:size;padding:var(--slide-padding);display:flex;flex-direction:column;opacity:0;pointer-events:none;transition:opacity .4s ease;overflow:hidden;}
+.slide:has(.slide-frame){padding:0;}
+.slide.active{opacity:1;pointer-events:auto;z-index:1;}
+
+/* ===== 內容安全框：把內容包進 .slide-frame，連 absolute 也跑不出去 ===== */
+.slide-frame{position:absolute;inset:var(--safe-y) var(--safe-x);display:flex;flex-direction:column;min-height:0;}
+.deck.safe-guides .slide-frame{outline:2px dashed rgba(220,38,38,0.55);}   /* 按 g 顯示安全線 */
+
+/* ===== 共用 chrome ===== */
+.page-label{position:absolute;top:calc(3 * var(--u));left:var(--edge-x);display:flex;align-items:center;gap:calc(0.9 * var(--u));font-size:calc(1.1 * var(--u));font-weight:700;color:var(--label-gray);letter-spacing:0.05em;z-index:5;}
+.page-label__num{display:inline-block;min-width:calc(2.2 * var(--u));text-align:center;padding:calc(0.15 * var(--u)) calc(0.55 * var(--u));background:var(--green-primary);color:var(--paper);border-radius:calc(0.3 * var(--u));}
+.page-label__bar{display:inline-block;width:calc(1.6 * var(--u));height:2px;background:var(--label-gray);}
+.brand-footer{position:absolute;bottom:calc(2 * var(--u));right:var(--edge-x);display:flex;align-items:center;z-index:5;}
+.brand-footer .brand-logo{display:block;height:calc(1.8 * var(--u));width:calc(6.4 * var(--u));color:var(--green-primary);}
+.hi{background-image:linear-gradient(180deg,transparent 12%,var(--hi-yellow) 12%,var(--hi-yellow) 88%,transparent 88%);padding:0 0.15em;box-decoration-break:clone;-webkit-box-decoration-break:clone;}
+/* ===== 警示語意修飾 .alert（少量、克制；原則與落地對照見 template-spec §四）=====
+   掛在標準版型上換成紅語意，不另立紅版型。用既有 --alert / --alert-soft token。 */
+.probe-grid__card.alert, .probe-cards__card.alert{border-top-color:var(--alert);}
+.probe-grid__card.alert .probe-grid__label{color:var(--alert);}
+.probe-rows__row.alert{border-left-color:var(--alert);background:var(--alert-soft);}
+.probe-rows__row.alert .probe-rows__tag{background:var(--alert);}
+.alert-mark{color:var(--alert);font-weight:900;}                 /* 紅 ×(U+00D7)/●/！等警示標記 */
+.tbd{color:var(--alert);border:1px dashed var(--alert);border-radius:var(--radius-sm);padding:0 calc(0.4 * var(--u));font-weight:700;}  /* 待填佔位 */
+.nowrap,.no-orphan{white-space:nowrap;}
+.progress{position:fixed;bottom:calc(1.5 * var(--u));right:calc(2 * var(--u));font-family:var(--font-family);font-size:calc(0.8 * var(--u));color:rgba(0,0,0,0.3);z-index:100;pointer-events:none;}
+
+/* ==============================================================
+   規劃層（Plan Layer）— 把「規劃」與「成品」合併在單一檔
+   簡報模式（預設）：乾淨成品，規劃層隱藏、畫面不可捲。
+   規劃模式（按 P，html/body 加 .mode-plan）：投影片維持 16:9 置頂、不被遮，
+     規劃面板「往下展開」接在投影片下方，往下捲才看完。面板內：完整逐字原文
+     （＝該頁對應段落，也就是上台念的稿）＋小設計條。
+   ‧ 每頁一個 <aside class="plan-note">（永遠 display:none，當資料來源）；
+     presenter.js 把 active 頁的 plan-note 內容複製進 #plan-panel。
+   ============================================================== */
+.plan-note { display: none; }     /* 資料來源，永遠隱藏 */
+#plan-panel { display: none; }    /* 規劃面板，預設隱藏 */
+
+/* 規劃模式：開放捲動；舞台改 static 置頂、維持舞台寬（container 仍生效），面板接下方 */
+/* 注意：body 不染色 —— 上方投影片兩側留白維持該頁原本底色（bleed），只有下方面板是綠帶 */
+html.mode-plan, html.mode-plan body { height: auto; overflow-y: auto; }
+body.mode-plan .deck { position: static; margin: 0 auto; height: auto; aspect-ratio: auto; }
+body.mode-plan .slide { display: none; }
+body.mode-plan .slide.active {
+  display: flex; position: relative; inset: auto;
+  width: 100%; aspect-ratio: 16 / 9; height: auto;
+  opacity: 1; pointer-events: auto;
+}
+body.mode-plan #plan-panel {
+  display: block;
+  width: 100%; margin: 0; box-sizing: border-box;     /* 整條全寬綠帶（不再置中縮窄）*/
+  background: var(--green-dark); color: #fff;
+  padding: 2.2vw 7vw 4vw;
+  animation: plan-down 0.22s ease;
+}
+@keyframes plan-down { from { opacity: 0; transform: translateY(-1vw); } to { opacity: 1; transform: translateY(0); } }
+
+/* 面板內：完整逐字原文（主）＋ 小設計條。面板在舞台外，用 vw（無 container）。 */
+#plan-panel .plan-note__source {
+  border-left: 3px solid var(--hi-yellow);
+  padding: 0.4vw 0 0.4vw 1.2vw;
+  font-size: 1.15vw; line-height: 1.95;
+}
+#plan-panel .plan-note__source b {
+  display: block; color: var(--hi-yellow); font-weight: 700;
+  font-size: 0.85vw; letter-spacing: 0.12em; margin-bottom: 0.4vw;
+}
+#plan-panel .plan-note__meta {
+  font-size: 0.9vw; line-height: 1.8; color: rgba(255,255,255,0.82);
+  border-top: 1px solid rgba(255,255,255,0.18);
+  margin-top: 1.1vw; padding-top: 0.7vw;
+}
+#plan-panel .plan-note__meta b { color: var(--hi-yellow); font-weight: 700; }
+#plan-panel .plan-note__meta .stop { color: #ff9a9a; font-weight: 700; }
+
+/* 原文裡「被萃取成投影片重點」的句子：黃色底線 */
+.src-key {
+  text-decoration: underline;
+  text-decoration-color: var(--hi-yellow);
+  text-decoration-thickness: 0.22vw;
+  text-underline-offset: 0.28vw;
+  font-weight: 700;
+}
+
+/* 模式提示：右上角小藥丸（舞台外，用 vw）*/
+.mode-hint {
+  position: fixed; top: 1.6vw; right: 1.8vw;
+  font-size: 0.78vw; font-weight: 700;
+  color: var(--green-primary);
+  background: rgba(255,255,255,0.9);
+  padding: 0.35vw 0.95vw; border-radius: 100vw;
+  box-shadow: 0 0.2vw 0.8vw rgba(0,0,0,0.12);
+  font-family: var(--font-family);
+  z-index: 200; pointer-events: none; letter-spacing: 0.05em;
+}
+
+@media print{
+  @page{size:1920px 1080px;margin:0;}
+  html,body{width:1920px;height:auto;overflow:visible;background:#FFFFFF;}
+  .deck{position:static;width:1920px;height:auto;aspect-ratio:auto;margin:0;}
+  .slide{position:relative!important;inset:auto!important;width:1920px!important;height:1080px!important;opacity:1!important;pointer-events:auto!important;transition:none!important;page-break-after:always;break-after:page;overflow:hidden;}
+  .slide:last-child{page-break-after:auto;break-after:auto;}
+  .progress, .plan-note, #plan-panel, .mode-hint { display:none!important; }
+}
+
+/* ============================================================
+   通用進場動畫 v2（2026-08-15）
+   用法：在元素上加 class 即可，不必再逐頁寫 CSS。
+
+     .anim-bar     長條長出來（scaleX，效能好；條裡有文字時改用下面那個）
+     .anim-bar-w   長條長出來（width，條裡有文字時用，字不會被壓扁）
+     .anim-up      淡入＋往上浮（最泛用）
+     .anim-fade    單純淡入
+     .anim-pop     彈出放大（圓點、徽章）
+     .anim-drop    從上落下（年份卡、大數字）
+     .anim-slam    放大砸下（揭曉、結果）
+     .anim-left    從左滑入 ┐ 兩欄對比用
+     .anim-right   從右滑入 ┘
+     .anim-stamp   蓋章（帶旋轉的彈跳）
+     .anim-draw    SVG 線條畫出來（見下方說明）
+     .anim-stagger 加在「容器」上，子項自動依序浮上來（最多 8 個）
+
+   微調：style="--anim-delay:.4s"（延遲）、style="--anim-dur:.8s"（時長）
+
+   翻牌頁：包在 .rvz 裡的元素會自動改成「翻開（.is-open）才播」，
+           不用換 class，蓋著的時候不會偷跑。
+
+   SVG 畫線：元素要能取得路徑長度，寫成
+       <path class="anim-draw" style="--anim-draw-len:560" …/>
+       （560 ≈ 路徑長度；抓不準就寫大一點，動畫會從更遠處開始畫）
+
+   動畫只在 .slide.active（目前這一頁）觸發，翻回來會重播。
+   關閉：按 M，或系統開啟「減少動態效果」→ 自動關閉（見最下方）
+   ============================================================ */
+@keyframes nlGrowX{from{transform:scaleX(0);}to{transform:scaleX(1);}}
+@keyframes nlGrowW{from{width:0;}}
+@keyframes nlFadeUp{from{opacity:0;transform:translateY(calc(2*var(--u)));}to{opacity:1;transform:none;}}
+@keyframes nlFade{from{opacity:0;}to{opacity:1;}}
+@keyframes nlPop{from{opacity:0;transform:scale(.86);}to{opacity:1;transform:scale(1);}}
+@keyframes nlDrop{from{opacity:0;transform:translateY(calc(-2.6*var(--u)));}to{opacity:1;transform:none;}}
+@keyframes nlSlam{from{opacity:0;transform:scale(1.32);}to{opacity:1;transform:scale(1);}}
+@keyframes nlInL{from{opacity:0;transform:translateX(calc(-6*var(--u)));}to{opacity:1;transform:none;}}
+@keyframes nlInR{from{opacity:0;transform:translateX(calc(6*var(--u)));}to{opacity:1;transform:none;}}
+@keyframes nlStamp{from{opacity:0;transform:rotate(-6deg) scale(1.6);}to{opacity:1;transform:rotate(-6deg) scale(1);}}
+@keyframes nlDraw{from{stroke-dashoffset:var(--anim-draw-len,600);}to{stroke-dashoffset:0;}}
+
+.slide.active .anim-bar   {transform-origin:left center;animation:nlGrowX  var(--anim-dur,.75s) ease-out both var(--anim-delay,.15s);}
+.slide.active .anim-bar-w {animation:nlGrowW  var(--anim-dur,.6s)  ease-out both var(--anim-delay,.15s);}
+.slide.active .anim-up    {animation:nlFadeUp var(--anim-dur,.5s)  ease-out both var(--anim-delay,.1s);}
+.slide.active .anim-fade  {animation:nlFade   var(--anim-dur,.6s)  ease-out both var(--anim-delay,.1s);}
+.slide.active .anim-pop   {animation:nlPop    var(--anim-dur,.45s) ease-out both var(--anim-delay,.1s);}
+.slide.active .anim-drop  {animation:nlDrop   var(--anim-dur,.35s) ease-out both var(--anim-delay,.1s);}
+.slide.active .anim-slam  {animation:nlSlam   var(--anim-dur,.3s)  ease-out both var(--anim-delay,.1s);}
+.slide.active .anim-left  {animation:nlInL    var(--anim-dur,.5s)  ease-out both var(--anim-delay,0s);}
+.slide.active .anim-right {animation:nlInR    var(--anim-dur,.5s)  ease-out both var(--anim-delay,.15s);}
+.slide.active .anim-stamp {animation:nlStamp  var(--anim-dur,.45s) cubic-bezier(.34,1.56,.64,1) both var(--anim-delay,.1s);}
+.anim-draw{stroke-dasharray:var(--anim-draw-len,600);}
+.slide.active .anim-draw  {animation:nlDraw   var(--anim-dur,1s)   ease-in-out both var(--anim-delay,.2s);}
+
+.slide.active .anim-stagger > *{animation:nlFadeUp .5s ease-out both;}
+.slide.active .anim-stagger > *:nth-child(1){animation-delay:.10s;}
+.slide.active .anim-stagger > *:nth-child(2){animation-delay:.22s;}
+.slide.active .anim-stagger > *:nth-child(3){animation-delay:.34s;}
+.slide.active .anim-stagger > *:nth-child(4){animation-delay:.46s;}
+.slide.active .anim-stagger > *:nth-child(5){animation-delay:.58s;}
+.slide.active .anim-stagger > *:nth-child(6){animation-delay:.70s;}
+.slide.active .anim-stagger > *:nth-child(7){animation-delay:.82s;}
+.slide.active .anim-stagger > *:nth-child(8){animation-delay:.94s;}
+
+/* 翻牌（.rvz）裡的內容：蓋著時不播，翻開（.is-open）的瞬間才播 */
+.slide.active .rvz:not(.is-open) [class*="anim-"],
+.slide.active .rvz:not(.is-open) .anim-stagger > *{animation:none!important;}
+
+/* 總開關：presenter.js 按 M 會在 <html> 加上 .no-motion（設定會被記住）
+   放在檔案最後，確保蓋得過所有動畫規則（含各簡報自己寫的） */
+html.no-motion *,
+html.no-motion *::before,
+html.no-motion *::after{
+  animation:none!important;
+  transition:none!important;
+}
+
+/* 系統層級「減少動態效果」→ 一律不播（無障礙預設） */
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation:none!important;transition:none!important;}
+}
