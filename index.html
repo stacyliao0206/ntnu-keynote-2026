@@ -11,11 +11,11 @@
 /* ========== 滿版照片 photo ========== */
 .probe-photo{justify-content:flex-end;align-items:flex-start;}
 .probe-photo__inner{max-width:74%;}
-.probe-photo__eyebrow{font-size:calc(1.7 * var(--u));font-weight:700;letter-spacing:0.3em;color:var(--hi-yellow);margin-bottom:calc(1 * var(--u));}
+.probe-photo__eyebrow{font-size:calc(2.92 * var(--u));font-weight:700;letter-spacing:0.08em;color:var(--hi-yellow);margin-bottom:calc(1 * var(--u));}
 .probe-photo__title{font-size:var(--fs-cover-title);font-weight:900;color:#fff;line-height:1.14;
   text-shadow:0 calc(0.2 * var(--u)) calc(1.4 * var(--u)) rgba(0,0,0,0.5);}
-.probe-photo__title small{display:block;font-size:calc(1.3 * var(--u));font-weight:700;letter-spacing:0.35em;color:var(--hi-yellow);margin-bottom:calc(0.8 * var(--u));}
-.probe-photo__sub{font-size:calc(2 * var(--u));font-weight:500;color:rgba(255,255,255,0.94);
+.probe-photo__title small{display:block;font-size:calc(2.92 * var(--u));font-weight:700;letter-spacing:0.1em;color:var(--hi-yellow);margin-bottom:calc(0.8 * var(--u));}
+.probe-photo__sub{font-size:calc(2.92 * var(--u));font-weight:500;color:rgba(255,255,255,0.94);
   margin-top:calc(1.6 * var(--u));max-width:90%;line-height:1.75;text-shadow:0 calc(0.1 * var(--u)) calc(0.8 * var(--u)) rgba(0,0,0,0.55);}
 .probe-photo__logo{position:absolute;top:calc(3 * var(--u));right:var(--edge-x);display:block;
   height:calc(2.2 * var(--u));width:auto;aspect-ratio:162.16/45.83;color:#fff;}
@@ -26,10 +26,10 @@
 .probe-split__grid{display:grid;grid-template-columns:1fr 1.1fr;gap:calc(4 * var(--u));flex:1;min-height:0;}
 .probe-split__grid>*{min-height:0;}
 .probe-split__body{display:flex;flex-direction:column;justify-content:safe center;}
-.probe-split__desc{font-size:calc(2 * var(--u));line-height:1.95;color:var(--ink);}
+.probe-split__desc{font-size:calc(2.92 * var(--u));line-height:1.6;color:var(--ink);}
 .probe-split__list-label{font-size:var(--fs-label);font-weight:700;letter-spacing:0.2em;color:var(--green-primary);margin:calc(1.4 * var(--u)) 0 calc(0.8 * var(--u));}
 .probe-split__list{list-style:none;}
-.probe-split__list li{font-size:calc(2 * var(--u));line-height:1.5;color:var(--ink);padding-left:calc(2 * var(--u));position:relative;margin-bottom:calc(0.35 * var(--u));}
+.probe-split__list li{font-size:calc(2.92 * var(--u));line-height:1.45;color:var(--ink);padding-left:calc(2 * var(--u));position:relative;margin-bottom:calc(0.5 * var(--u));}
 .probe-split__list li b{color:var(--green-dark);}
 .probe-split__list li::before{content:"";position:absolute;left:0;top:calc(0.85 * var(--u));width:calc(0.8 * var(--u));height:calc(0.8 * var(--u));border-radius:50%;background:var(--green-primary);}
 .probe-split__visual{min-height:0;overflow:hidden;border-radius:var(--radius-md);box-shadow:var(--shadow-card);}
@@ -44,8 +44,8 @@
 .probe-cards__img{flex:1;min-height:0;overflow:hidden;background:var(--paper-warm);}
 .probe-cards__img img{width:100%;height:100%;object-fit:cover;display:block;}
 .probe-cards__info{padding:calc(1.4 * var(--u)) calc(1.7 * var(--u)) calc(1.8 * var(--u));display:flex;flex-direction:column;gap:calc(0.5 * var(--u));}
-.probe-cards__name{font-size:var(--fs-card-title);font-weight:900;color:var(--ink);}
-.probe-cards__detail{font-size:calc(2 * var(--u));line-height:1.5;color:var(--mid-gray);}
+.probe-cards__name{font-size:calc(3.1 * var(--u));font-weight:900;color:var(--ink);}
+.probe-cards__detail{font-size:calc(2.92 * var(--u));line-height:1.4;color:var(--mid-gray);}
 
 /* ========== 章節隔頁 chapter ========== */
 .probe-chapter{padding:0;flex-direction:row;}
@@ -55,20 +55,20 @@
   line-height:0.82;letter-spacing:-0.04em;user-select:none;}
 .probe-chapter__right{flex:1;display:flex;flex-direction:column;justify-content:center;
   padding:calc(5 * var(--u)) calc(7 * var(--u)) calc(5 * var(--u)) calc(6 * var(--u));}
-.probe-chapter__label{font-size:var(--fs-label);font-weight:700;letter-spacing:0.3em;color:var(--green-primary);margin-bottom:calc(1 * var(--u));}
+.probe-chapter__label{font-size:calc(2.92 * var(--u));font-weight:700;letter-spacing:0.08em;color:var(--green-primary);margin-bottom:calc(1 * var(--u));}
 .probe-chapter__title{font-size:var(--fs-chapter-title);font-weight:900;color:var(--ink);
   border-top:3px solid var(--green-primary);padding-top:calc(1.8 * var(--u));}
-.probe-chapter__sub{font-size:var(--fs-sub);font-weight:500;color:var(--mid-gray);margin-top:calc(1.5 * var(--u));}
+.probe-chapter__sub{font-size:calc(2.92 * var(--u));font-weight:500;color:var(--mid-gray);margin-top:calc(1.5 * var(--u));}
 
 /* ========== 核心命題 hero ========== */
 .probe-hero{align-items:center;}
 .probe-hero__headline{font-size:var(--fs-hero);font-weight:900;color:var(--ink);
   border-top:3px solid var(--green-primary);padding-top:calc(1.5 * var(--u));align-self:flex-start;}
 .probe-hero__middle{flex:1;min-height:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:calc(2.4 * var(--u));}
-.probe-hero__desc{font-size:calc(2 * var(--u));font-weight:500;text-align:center;max-width:82%;line-height:var(--lh-normal);}
+.probe-hero__desc{font-size:calc(2.92 * var(--u));font-weight:500;text-align:center;max-width:86%;line-height:1.55;}
 .q-big{font-size:calc(4.4 * var(--u));font-weight:900;color:var(--green-dark);line-height:1.25;text-align:center;}
 .pill-row{display:flex;gap:calc(1.6 * var(--u));flex-wrap:wrap;justify-content:center;}
-.pill{font-size:calc(2.2 * var(--u));font-weight:900;color:#fff;background:var(--green-primary);
+.pill{font-size:calc(3 * var(--u));font-weight:900;color:#fff;background:var(--green-primary);
   padding:calc(0.8 * var(--u)) calc(2.2 * var(--u));border-radius:calc(100 * var(--u));}
 
 /* ========== 深綠呼吸頁 breather ========== */
@@ -78,7 +78,7 @@
 .probe-breather .page-label__bar{background:rgba(255,255,255,0.35);}
 .probe-breather .brand-footer .brand-logo{color:rgba(255,255,255,0.55);}
 .probe-breather__quote{font-size:calc(3.6 * var(--u));font-weight:900;color:#fff;line-height:1.45;max-width:84%;}
-.probe-breather__sub{font-size:calc(2 * var(--u));color:rgba(255,255,255,0.75);margin-top:calc(2.2 * var(--u));max-width:80%;line-height:1.7;}
+.probe-breather__sub{font-size:calc(2.92 * var(--u));color:rgba(255,255,255,0.75);margin-top:calc(2 * var(--u));max-width:82%;line-height:1.55;}
 
 /* ========== 多欄卡 grid（純文字）========== */
 .probe-grid__hero{font-size:var(--fs-hero);font-weight:900;color:var(--ink);
@@ -87,9 +87,9 @@
   column-gap:calc(3 * var(--u));align-content:safe center;flex:1;min-height:0;}
 .probe-grid__grid.g2{grid-template-columns:repeat(2,1fr);column-gap:calc(4.5 * var(--u));}
 .probe-grid__card{display:grid;grid-template-rows:subgrid;grid-row:span 3;border-top:3px solid var(--green-primary);padding-top:calc(1.5 * var(--u));}
-.probe-grid__label{font-size:calc(1.1 * var(--u));font-weight:700;letter-spacing:0.25em;color:var(--green-primary);}
-.probe-grid__title{font-size:var(--fs-card-title);font-weight:900;color:var(--ink);margin:calc(0.6 * var(--u)) 0 calc(1 * var(--u));line-height:1.3;}
-.probe-grid__body{font-size:calc(2 * var(--u));line-height:1.7;color:var(--ink);}
+.probe-grid__label{font-size:calc(2.92 * var(--u));font-weight:700;letter-spacing:0.04em;color:var(--green-primary);}
+.probe-grid__title{font-size:calc(3.1 * var(--u));font-weight:900;color:var(--ink);margin:calc(0.5 * var(--u)) 0 calc(0.7 * var(--u));line-height:1.25;}
+.probe-grid__body{font-size:calc(2.92 * var(--u));line-height:1.5;color:var(--ink);}
 
 /* ========== 大數字 stats ========== */
 .probe-stats{background:var(--green-dark);}
@@ -103,9 +103,9 @@
   column-gap:calc(3 * var(--u));row-gap:calc(0.7 * var(--u));align-content:safe center;flex:1;min-height:0;}
 .probe-stats__item{display:grid;grid-template-rows:subgrid;grid-row:span 3;text-align:center;}
 .probe-stats__num{align-self:end;font-size:var(--fs-kpi);font-weight:900;color:var(--hi-yellow);line-height:1;}
-.probe-stats__num .unit{font-size:calc(2 * var(--u));margin-left:calc(0.3 * var(--u));}
-.probe-stats__label{font-size:var(--fs-card-title);font-weight:900;color:#fff;margin-top:calc(0.8 * var(--u));}
-.probe-stats__desc{font-size:calc(2 * var(--u));color:rgba(255,255,255,0.75);margin-top:calc(0.4 * var(--u));}
+.probe-stats__num .unit{font-size:calc(2.92 * var(--u));margin-left:calc(0.3 * var(--u));}
+.probe-stats__label{font-size:calc(3.1 * var(--u));font-weight:900;color:#fff;margin-top:calc(0.8 * var(--u));}
+.probe-stats__desc{font-size:calc(2.92 * var(--u));color:rgba(255,255,255,0.75);margin-top:calc(0.4 * var(--u));}
 /* 移除每頁數感實驗室 LOGO（內容頁右下、滿版照片頁右上）*/
 .brand-footer,.probe-photo__logo{display:none!important;}
 </style>
@@ -129,13 +129,13 @@
     <div class="brand-footer"><svg class="brand-logo" viewBox="0 0 162.16 45.83" role="img" aria-label="數感實驗室 NUMERACY LAB"><use href="#nl-logo"/></svg></div>
     <div class="slide-frame">
       <div class="probe-split__hero">十年前，我不想當老師卻來到師大</div>
-      <div class="probe-split__grid" style="grid-template-columns:1.15fr 1fr;">
+      <div class="probe-split__grid" style="grid-template-columns:1.7fr 1fr;">
         <div class="probe-split__body">
-          <div class="probe-split__desc">大學的時候我就決定要到業界闖盪，後來選擇一條比較少人走的路，體制外的教育創業——這條路後來變成了「數感實驗室」。</div>
+          <div class="probe-split__desc">大學時我就決定要到業界闖盪，畢業後走了一條少人走的路——體制外的教育創業。</div>
           <ul class="probe-split__list anim-stagger" style="margin-top:calc(2.4 * var(--u));">
             <li>師大公民教育與活動領導學系 <b>102 級</b></li>
             <li>2020 師大教育學院 <b>百大亮點校友</b></li>
-            <li>台灣微軟工作 2 年，負責<b>最有價值專家（MVP）暨社群計畫</b></li>
+            <li>台灣微軟工作 2 年｜<b>MVP 暨社群計畫</b></li>
             <li>數感實驗室 <b>創辦人暨執行長</b></li>
           </ul>
         </div>
@@ -153,11 +153,11 @@
     <div class="page-label"><span class="page-label__num">03</span><span class="page-label__bar"></span><span>我這幾年在做的事</span></div>
     <div class="brand-footer"><svg class="brand-logo" viewBox="0 0 162.16 45.83" role="img" aria-label="數感實驗室 NUMERACY LAB"><use href="#nl-logo"/></svg></div>
     <div class="slide-frame" style="justify-content:center;">
-      <div class="probe-stats__headline">從零開始，做出全台最大的數學科普平台</div>
+      <div class="probe-stats__headline">從零開始，做出全台最大的數學科普品牌</div>
       <div class="probe-stats__row">
         <div class="probe-stats__item"><div class="probe-stats__num anim-drop">700<span class="unit">萬+</span></div><div class="probe-stats__label">群眾募資</div><div class="probe-stats__desc">在嘖嘖平台募得</div></div>
-        <div class="probe-stats__item"><div class="probe-stats__num anim-drop" style="--anim-delay:.25s">10<span class="unit">萬</span></div><div class="probe-stats__label">臉書粉絲</div><div class="probe-stats__desc">一起玩數學的人</div></div>
-        <div class="probe-stats__item"><div class="probe-stats__num anim-drop" style="--anim-delay:.4s">3.4<span class="unit">萬</span></div><div class="probe-stats__label">YouTube 訂閱</div><div class="probe-stats__desc">把數學拍成影片</div></div>
+        <div class="probe-stats__item"><div class="probe-stats__num anim-drop" style="--anim-delay:.25s">14<span class="unit">萬</span></div><div class="probe-stats__label">臉書粉絲</div><div class="probe-stats__desc">一起玩數學的人</div></div>
+        <div class="probe-stats__item"><div class="probe-stats__num anim-drop" style="--anim-delay:.4s">7,000<span class="unit">人</span></div><div class="probe-stats__label">每年營隊學員</div><div class="probe-stats__desc">全台活動遍地開花</div></div>
       </div>
     </div>
     <aside class="plan-note">
@@ -193,7 +193,6 @@
           <span class="pill">選擇善良</span>
         </div>
       </div>
-      <div class="probe-hero__desc anim-up">接下來 20 分鐘，我想跟你聊這三個選擇。因為你的選擇，會<span class="hi">決定你是誰</span>。</div>
     </div>
     <aside class="plan-note">
       <div class="plan-note__source"><b>逐字稿</b>我的答案是這樣：AI 真的很強，它會的東西比我們多太多了。但有一件事，它永遠不會替你做，那就是「選擇」。AI 可以給你一百個選項，但要選哪一個、要成為什麼樣的人，只有你能決定。所以今天，我想跟你聊三個選擇：選擇投入、選擇創造、選擇善良。這三個選擇，會決定你是誰。</div>
@@ -226,7 +225,7 @@
         </div>
         <div class="probe-grid__card">
           <div class="probe-grid__label">AI 不會</div>
-          <div class="probe-grid__title">好奇・溝通・協作・同理</div>
+          <div class="probe-grid__title">好奇・溝通・同理</div>
           <div class="probe-grid__body">這些只能靠真實的人、在真實的關係裡，一次次練出來。</div>
         </div>
       </div>
@@ -246,15 +245,15 @@
       <div class="probe-cards__cards anim-stagger">
         <div class="probe-cards__card">
           <div class="probe-cards__img"><img src="assets/club-fair.jpg" alt="校園園遊會社團擺攤"></div>
-          <div class="probe-cards__info"><div class="probe-cards__name">社團・100+ 選擇</div><div class="probe-cards__detail">找到歸屬，投入熱情。</div></div>
+          <div class="probe-cards__info"><div class="probe-cards__name">超過100+社團</div><div class="probe-cards__detail">找到歸屬，投入熱情</div></div>
         </div>
         <div class="probe-cards__card">
           <div class="probe-cards__img"><img src="assets/cheer-squad.jpg" alt="啦啦隊活動歡呼"></div>
-          <div class="probe-cards__info"><div class="probe-cards__name">當幹部・帶活動</div><div class="probe-cards__detail">溝通與抗壓，這樣練出來。</div></div>
+          <div class="probe-cards__info"><div class="probe-cards__name">當幹部・帶活動</div><div class="probe-cards__detail">溝通與抗壓，這樣練出來</div></div>
         </div>
         <div class="probe-cards__card">
           <div class="probe-cards__img"><img src="assets/classroom-teach.jpg" alt="教室現場教學實作"></div>
-          <div class="probe-cards__info"><div class="probe-cards__name">實習・工讀</div><div class="probe-cards__detail">提早看見真實職場。</div></div>
+          <div class="probe-cards__info"><div class="probe-cards__name">實習工讀</div><div class="probe-cards__detail">提早看見真實職場</div></div>
         </div>
       </div>
     </div>
@@ -270,14 +269,14 @@
     <div class="brand-footer"><svg class="brand-logo" viewBox="0 0 162.16 45.83" role="img" aria-label="數感實驗室 NUMERACY LAB"><use href="#nl-logo"/></svg></div>
     <div class="slide-frame">
       <div class="probe-cards__hero">在師大，我抓住每一次「上場」的機會</div>
-      <div class="probe-cards__cards" style="grid-template-columns:1fr 1fr;">
+      <div class="probe-cards__cards" style="grid-template-columns:0.92fr 1.08fr;">
         <div class="probe-cards__card">
           <div class="probe-cards__img"><img src="assets/ambassador.jpg" alt="師大親善大使列隊接待"></div>
-          <div class="probe-cards__info"><div class="probe-cards__name">親善大使</div><div class="probe-cards__detail">接待貴賓、司儀主持——學會在大場面穩住自己、臨機應變。</div></div>
+          <div class="probe-cards__info"><div class="probe-cards__name">親善大使</div><div class="probe-cards__detail">接待來訪貴賓、校園導覽、擔任重要典禮會議司儀。</div></div>
         </div>
         <div class="probe-cards__card">
           <div class="probe-cards__img"><img src="assets/reporter-host.jpg" alt="擔任研習營校園記者與司儀統籌" style="object-position:center 14%;"></div>
-          <div class="probe-cards__info"><div class="probe-cards__name">校園記者・主持</div><div class="probe-cards__detail">採訪、寫稿、剪輯影音——把事情說清楚，學會理解不同觀點和立場。</div></div>
+          <div class="probe-cards__info"><div class="probe-cards__name">校園記者</div><div class="probe-cards__detail">採訪、寫稿、剪影片，學會把事說清楚、理解不同的觀點立場。</div></div>
         </div>
       </div>
     </div>
@@ -316,11 +315,11 @@
     <div class="page-label"><span class="page-label__num">12</span><span class="page-label__bar"></span><span>我的岔路</span></div>
     <div class="brand-footer"><svg class="brand-logo" viewBox="0 0 162.16 45.83" role="img" aria-label="數感實驗室 NUMERACY LAB"><use href="#nl-logo"/></svg></div>
     <div class="slide-frame probe-hero">
-      <div class="probe-hero__headline">大四那年，我問了自己一個問題</div>
+      <div class="probe-hero__headline">我想問的是</div>
       <div class="probe-hero__middle">
         <div class="q-big anim-up">師大人，只能當老師嗎？</div>
       </div>
-      <div class="probe-hero__desc anim-up" style="--anim-delay:.2s">安全答案是考教甄、讀研究所，這兩個我都沒有選。我還不知道理想的工作是什麼，但我很清楚自己的優勢與興趣。</div>
+      <div class="probe-hero__desc anim-up" style="--anim-delay:.2s">當你知道自己的優勢和興趣，面對岔路，自然有多一點的勇氣。</div>
     </div>
     <aside class="plan-note">
       <div class="plan-note__source"><b>逐字稿</b>接著是第二個選擇：選擇創造。時間回到我大四那年，我站在一個岔路口，問了自己一個問題：師大人，難道只能當老師嗎？當時的安全答案有兩個，一個是考教甄、當個穩定的老師，一個是繼續念研究所。這兩條都是安全牌。但我兩個都沒有選。當時我還不知道自己理想的工作是什麼，可是我很清楚自己的優勢和興趣在哪裡。面對轉捩點，你有沒有勇氣，走向那條看起來比較奇怪的岔路？</div>
@@ -334,13 +333,13 @@
     <div class="brand-footer"><svg class="brand-logo" viewBox="0 0 162.16 45.83" role="img" aria-label="數感實驗室 NUMERACY LAB"><use href="#nl-logo"/></svg></div>
     <div class="slide-frame">
       <div class="probe-split__hero">從一個念頭開始，發揮自己的活動專長</div>
-      <div class="probe-split__grid" style="grid-template-columns:1fr 1.25fr;">
+      <div class="probe-split__grid" style="grid-template-columns:1fr 1.55fr;">
         <div class="probe-split__visual"><img src="assets/team-mathplay.jpg" alt="數感實驗室團隊動手玩數學合照"></div>
         <div class="probe-split__body">
           <ul class="probe-split__list anim-stagger">
-            <li><b>一個念頭</b>：從自己害怕數學的慘痛經歷，到想辦法讓學生認識好玩的數學。</li>
-            <li><b>數學實驗課</b>：為什麼生物、自然都有實驗，數學卻沒有動手做？</li>
-            <li><b>創辦數感實驗室</b>：扭轉大眾對數學的刻板印象，長成全台最大的數學科普與 STEAM 教育機構。</li>
+            <li><b>一個念頭</b>：我以前超怕數學，想讓學生覺得數學好玩。</li>
+            <li><b>數學實驗課</b>：生物、自然能動手做，數學為何不行？</li>
+            <li><b>創辦數感實驗室</b>：全台最大的數學科普與 STEAM 機構。</li>
           </ul>
         </div>
       </div>
@@ -356,15 +355,15 @@
     <div class="page-label"><span class="page-label__num">14</span><span class="page-label__bar"></span><span>教育的更多形狀</span></div>
     <div class="brand-footer"><svg class="brand-logo" viewBox="0 0 162.16 45.83" role="img" aria-label="數感實驗室 NUMERACY LAB"><use href="#nl-logo"/></svg></div>
     <div class="slide-frame">
-      <div class="probe-split__hero">教育的舞台，不只講台一種</div>
-      <div class="probe-split__grid" style="grid-template-columns:1.25fr 1fr;">
+      <div class="probe-split__hero">教育的舞台，不只學校老師一種</div>
+      <div class="probe-split__grid" style="grid-template-columns:1.6fr 1fr;">
         <div class="probe-split__body">
           <ul class="probe-split__list anim-stagger">
-            <li><b>教育科技</b>：把課程活動加入科技體驗、建立線上平台，讓學習變多元、便利，影響力擴散到海外。</li>
-            <li><b>內容創作</b>：原創的影片、教具——不是教知識，而是引發孩子的好奇心與學習動機。</li>
-            <li><b>教育創新</b>：看見一個沒被解決的教育問題，動手嘗試。</li>
+            <li><b>教育科技</b>：教學融入科技、做線上平台，影響力擴散海外。</li>
+            <li><b>內容創作</b>：拍影片、做教具，引發孩子的好奇心。</li>
+            <li><b>教育創新</b>：看見問題，就自己動手做。</li>
           </ul>
-          <div class="probe-split__desc" style="margin-top:calc(1.6 * var(--u));color:var(--mid-gray);">「既懂教育、又懂創造」的人，反而更難得。</div>
+          <div class="probe-split__desc" style="margin-top:calc(0.9 * var(--u));color:var(--mid-gray);">「既懂教育、又懂創造」的人更難得。</div>
         </div>
         <div class="probe-split__visual" style="background:var(--paper-warm);"><img src="assets/toys-grid.jpg" alt="數感實驗室設計的各式數學教具" style="object-fit:contain;"></div>
       </div>
@@ -382,7 +381,7 @@
     <div class="slide-frame probe-hero">
       <div class="probe-hero__headline">那，怎麼知道哪條路是對的？</div>
       <div class="probe-hero__middle">
-        <div class="q-big anim-up">選你所愛，<span class="hi">愛你所選</span>。</div>
+        <div class="q-big anim-up">選你所愛，愛你所選。</div>
       </div>
       <div class="probe-hero__desc anim-up" style="--anim-delay:.2s">不要害怕和別人不一樣，也不要為自己設限。</div>
     </div>
@@ -413,7 +412,7 @@
         <div class="probe-grid__card">
           <div class="probe-grid__label">看見身邊</div>
           <div class="probe-grid__title">別把好意當空氣</div>
-          <div class="probe-grid__body">家人、老師、同學的付出，都不是理所當然的，而是一種互相。</div>
+          <div class="probe-grid__body">家人、老師、同學的付出是一種互相的關係</div>
         </div>
         <div class="probe-grid__card">
           <div class="probe-grid__label">看見孩子</div>
@@ -438,8 +437,7 @@
     <svg class="probe-photo__logo" viewBox="0 0 162.16 45.83" role="img" aria-label="數感實驗室 NUMERACY LAB"><use href="#nl-logo"/></svg>
     <div class="probe-photo__inner">
       <div class="probe-photo__eyebrow">教育的重量</div>
-      <div class="probe-photo__title">教育，是用生命影響生命的工作。</div>
-      <div class="probe-photo__sub">在數學課收到學生寫的情書——與人互動的感動，AI 給不出來。</div>
+      <div class="probe-photo__title">教育，是用生命影響生命的工作</div>
     </div>
     <aside class="plan-note">
       <div class="plan-note__source"><b>逐字稿</b>為什麼善良這麼重要？因為教育，說到底，是一份用生命影響生命的工作。我跟你分享一件小事：我曾經在數學課，收到學生偷偷寫給我的「情書」。那不是愛情，是一個孩子因為被理解、被在乎，而想回報你的心意。那一刻我很確定一件事——AI 可以給出正確答案，但它給不出「被一個人真心在乎」的感覺。這，就是我們永遠不會被取代的原因。</div>
@@ -453,9 +451,9 @@
     <div class="brand-footer"><svg class="brand-logo" viewBox="0 0 162.16 45.83" role="img" aria-label="數感實驗室 NUMERACY LAB"><use href="#nl-logo"/></svg></div>
     <div class="slide-frame probe-hero">
       <div class="probe-hero__middle">
-        <div class="q-big anim-up">你今天的選擇，<br>握著明天某個<span class="hi">孩子的未來</span>。</div>
+        <div class="q-big anim-up">今後你的每一個選擇，<br>都握著某一個<span class="hi">孩子的未來</span></div>
       </div>
-      <div class="probe-hero__desc anim-up" style="--anim-delay:.2s">能拿到師大這張入場券，是一種幸福——因為我們不只掌握自己的未來，還有能力和機會去幫助更多人、改變孩子的生命。</div>
+      <div class="probe-hero__desc anim-up" style="--anim-delay:.2s">能拿到師大這張入場券，是一種幸福——<br>因為我們不只掌握自己的未來，還有能力和機會去幫助更多人、改變孩子的生命。</div>
     </div>
     <aside class="plan-note">
       <div class="plan-note__source"><b>逐字稿</b>好，講到這裡，我想把今天的三個選擇收成一句話送給你。大部分的人，一生只能過好自己的人生；但你們不一樣——因為你們選擇了教育這條路，你今天的每一個選擇，都握著明天某個孩子的未來。能拿到師大這張入場券，其實是一種幸福——因為我們不只掌握自己的未來，還有能力、也有機會，去幫助更多人、去改變一個孩子的生命。</div>
@@ -463,7 +461,16 @@
     </aside>
   </section>
 
-  <!-- 19 收尾（滿版畢業歡呼照）-->
+  <!-- 20 金句：三個選擇（新增）-->
+  <section class="slide probe-breather" style="background:#004B24;">
+    <div class="page-label"><span class="page-label__num">20</span><span class="page-label__bar"></span><span>三個選擇</span></div>
+    <div class="brand-footer"><svg class="brand-logo" viewBox="0 0 162.16 45.83" role="img" aria-label="數感實驗室 NUMERACY LAB"><use href="#nl-logo"/></svg></div>
+    <div class="slide-frame" style="justify-content:center;align-items:center;">
+      <div class="probe-breather__quote anim-up">選擇投入，你會走得遠；<br>選擇創造，你會活成自己想要的樣子；<br>選擇善良，你會被人記得。</div>
+    </div>
+  </section>
+
+  <!-- 21 收尾（滿版畢業歡呼照）-->
   <section class="slide probe-photo" style="background:linear-gradient(180deg, rgba(0,40,22,0.28) 0%, rgba(0,40,22,0.5) 45%, rgba(0,40,22,0.9) 100%), url('assets/grad-cheer.jpg'); background-size:cover; background-position:center 32%;">
     <svg class="probe-photo__logo" viewBox="0 0 162.16 45.83" role="img" aria-label="數感實驗室 NUMERACY LAB"><use href="#nl-logo"/></svg>
     <div class="probe-photo__inner">
